@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaratini IA | Revolução em Inteligência Artificial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e Variáveis CSS */
+        :root {
+            --primary: #051D40;
+            --secondary: #00C86F;
+            --accent: #6A5ACD;
+            --neon-blue: #00F3FF;
+            --neon-green: #00FF9D;
+            --neon-purple: #B300FF;
+            --neon-orange: #FF6B00;
+            --dark-bg: #0A0F25;
+            --darker-bg: #050916;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #FFFFFF;
+            --text-secondary: #A0AEC0;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+            --mindez-gradient: linear-gradient(135deg, var(--neon-orange), var(--neon-purple));
+            --neon-glow: 0 0 10px rgba(0, 243, 255, 0.7), 0 0 20px rgba(0, 243, 255, 0.5), 0 0 30px rgba(0, 243, 255, 0.3);
+            --green-glow: 0 0 10px rgba(0, 255, 157, 0.7), 0 0 20px rgba(0, 255, 157, 0.5);
+            --purple-glow: 0 0 10px rgba(179, 0, 255, 0.7), 0 0 20px rgba(179, 0, 255, 0.5);
+            --orange-glow: 0 0 10px rgba(255, 107, 0, 0.7), 0 0 20px rgba(255, 107, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* Background Animado */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 5s;
+            background: radial-gradient(circle, var(--neon-orange) 0%, transparent 70%);
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 50%;
+            animation-delay: 10s;
+            background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(5, 13, 40, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--neon-glow);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: width 0.3s;
+            box-shadow: var(--neon-glow);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: var(--text);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--neon-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .mindez-button {
+            background: var(--mindez-gradient);
+            box-shadow: var(--orange-glow);
+        }
+
+        .mindez-button:hover {
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.8);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10, 25, 47, 0.8) 0%, rgba(5, 15, 30, 0.9) 70%);
+            z-index: -1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-orange), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--text);
+            border: 2px solid var(--neon-blue);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--neon-glow);
+        }
+
+        .secondary-button:hover {
+            background-color: rgba(0, 243, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 243, 255, 0.1);
+            border-radius: 10px;
+            animation: floatElement 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 50px;
+            height: 50px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 30px;
+            height: 30px;
+            top: 60%;
+            left: 85%;
+            animation-delay: 3s;
+            background: rgba(255, 107, 0, 0.1);
+        }
+
+        .floating-element:nth-child(3) {
+            width: 70px;
+            height: 70px;
+            top: 80%;
+            left: 15%;
+            animation-delay: 6s;
+            background: rgba(179, 0, 255, 0.1);
+        }
+
+        @keyframes floatElement {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(20px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-15px, 20px) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--darker-bg);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: var(--neon-glow);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(179, 0, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--text);
+            font-size: 2rem;
+            box-shadow: var(--neon-glow);
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mind-EZ App Section */
+        .mindez-app {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mindez-app::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10, 25, 47, 0.9) 0%, rgba(5, 15, 30, 1) 70%);
+            z-index: -1;
+        }
+
+        .mindez-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .mindez-text {
+            flex: 1;
+        }
+
+        .mindez-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .mindez-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .mindez-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .mindez-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+
+        .mindez-features li i {
+            color: var(--neon-orange);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .mindez-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .app-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(145deg, #1a1425, #2a1a3a);
+            border-radius: 40px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 107, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .app-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #2a1a3a, #1a1425);
+            border-radius: 35px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .app-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .app-stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-orange);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .app-feature-list {
+            width: 100%;
+        }
+
+        .app-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .app-feature i {
+            color: var(--neon-orange);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Products Section */
+        .products {
+            background-color: var(--darker-bg);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), var(--purple-glow);
+            border-color: rgba(179, 0, 255, 0.3);
+        }
+
+        .product-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(179, 0, 255, 0.2));
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.8rem;
+            color: var(--text);
+            font-size: 1.4rem;
+        }
+
+        .product-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin: 1.2rem 0;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10, 25, 47, 0.9) 0%, rgba(5, 15, 30, 1) 70%);
+            z-index: -1;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(0, 255, 157, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--neon-orange);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), var(--orange-glow);
+        }
+
+        .pricing-card.featured::before {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(255, 107, 0, 0.2));
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--mindez-gradient);
+            color: var(--text);
+            padding: 0.5rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--orange-glow);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2.5rem 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--neon-orange);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--darker-bg);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .contact-details li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details li i {
+            margin-right: 1rem;
+            color: var(--neon-blue);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .whatsapp-contact {
+            background: var(--mindez-gradient);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+            box-shadow: var(--orange-glow);
+        }
+
+        .whatsapp-contact h4 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .whatsapp-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-contact a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: var(--text);
+            padding: 4rem 0 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.8rem;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--neon-blue);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: var(--neon-glow);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .mindez-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu.active + nav {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-bg);
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            .mobile-menu.active + nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animações de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h1>Zaratini<span>IA</span></h1>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#features">Recursos</a></li>
+                        <li><a href="#mindez">Mind-EZ</a></li>
+                        <li><a href="#products">Produtos</a></li>
+                        <li><a href="#pricing">Planos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+                <a href="#pricing" class="cta-button mindez-button">Experimente Grátis</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <h2 class="fade-in">Revolução em Inteligência Artificial</h2>
+            <p class="fade-in">Desbloqueie o potencial máximo da IA para transformar sua saúde mental, produtividade e criatividade com soluções inovadoras da Zaratini IA.</p>
+            <div class="hero-buttons">
+                <a href="#mindez" class="cta-button mindez-button fade-in">Conhecer o Mind-EZ</a>
+                <a href="#features" class="secondary-button fade-in">Explorar Recursos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="fade-in">Nossas Soluções em IA</h2>
+                <p class="fade-in">Desenvolvemos tecnologias de ponta para diversos setores, com foco em inovação e resultados transformadores.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Saúde Mental</h3>
+                    <p>Aplicações de IA para bem-estar emocional e suporte psicológico personalizado com algoritmos avançados.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educação</h3>
+                    <p>Plataformas de aprendizado adaptativo com tutores virtuais inteligentes e análise de progresso.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Negócios</h3>
+                    <p>Automação inteligente e análise preditiva para otimizar operações e aumentar a eficiência.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Criatividade</h3>
+                    <p>Ferramentas de IA generativa para design, música, escrita e criação de conteúdo inovador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mind-EZ App Section -->
+    <section class="mindez-app" id="mindez">
+        <div class="container">
+            <div class="mindez-content">
+                <div class="mindez-text">
+                    <h2 class="fade-in">Mind-EZ - Sua Mente em Equilíbrio</h2>
+                    <p class="fade-in">O Mind-EZ é um aplicativo revolucionário que utiliza inteligência artificial de ponta para oferecer suporte emocional personalizado, técnicas de mindfulness e acompanhamento do seu bem-estar mental.</p>
+                    <p class="fade-in">Com algoritmos avançados de machine learning, o Mind-EZ se adapta às suas necessidades específicas e oferece recursos como diário emocional inteligente, exercícios de respiração guiada, meditações personalizadas e muito mais.</p>
+                    <ul class="mindez-features fade-in">
+                        <li><i class="fas fa-check-circle"></i> Análise de humor em tempo real</li>
+                        <li><i class="fas fa-check-circle"></i> Programas personalizados de mindfulness</li>
+                        <li><i class="fas fa-check-circle"></i> Relatórios detalhados de progresso</li>
+                        <li><i class="fas fa-check-circle"></i> Suporte 24/7 com chatbot especializado</li>
+                        <li><i class="fas fa-check-circle"></i> Exercícios baseados em terapia cognitiva</li>
+                    </ul>
+                    <a href="#pricing" class="cta-button mindez-button fade-in">Experimente o Mind-EZ</a>
+                </div>
+                <div class="mindez-image fade-in">
+                    <div class="app-mockup">
+                        <div class="app-screen">
+                            <div class="app-header">
+                                <h3>Mind-EZ</h3>
+                                <p>Sua mente em equilíbrio</p>
+                            </div>
+                            <div class="app-stats">
+                                <div class="stat">
+                                    <div class="stat-value">85%</div>
+                                    <div class="stat-label">Redução de Estresse</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">30d</div>
+                                    <div class="stat-label">Consistência</div>
+                                </div>
+                            </div>
+                            <div class="app-feature-list">
+                                <div class="app-feature">
+                                    <i class="fas fa-heartbeat"></i>
+                                    <span>Meditação Guiada</span>
+                                </div>
+                                <div class="app-feature">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Análise de Progresso</span>
+                                </div>
+                                <div class="app-feature">
+                                    <i class="fas fa-moon"></i>
+                                    <span>Sleep Assistant</span>
+                                </div>
+                                <div class="app-feature">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Assistente de IA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="fade-in">Nossos Produtos</h2>
+                <p class="fade-in">E-books e pacotes especiais para potencializar seu desenvolvimento pessoal e profissional com IA.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Guia de Mindfulness com IA</h3>
+                        <p>Aprenda técnicas práticas para reduzir o estresse e aumentar o foco no dia a dia com auxílio de inteligência artificial.</p>
+                        <div class="product-price">R$ 29,90</div>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Produtividade com IA</h3>
+                        <p>Descubra como usar ferramentas de IA para otimizar seu tempo, aumentar a eficiência e alcançar melhores resultados.</p>
+                        <div class="product-price">R$ 39,90</div>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Comprar Agora</a>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Pacote Bem-Estar Completo</h3>
+                        <p>Coleção premium com 5 e-books sobre saúde mental, alimentação inteligente, exercícios e muito mais.</p>
+                        <div class="product-price">R$ 99,90</div>
+                        <a href="#" class="cta-button" style="display: block; text-align: center;">Comprar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="fade-in">Planos Mind-EZ</h2>
+                <p class="fade-in">Escolha o plano ideal para suas necessidades de saúde mental e bem-estar.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card fade-in">
+                    <h3>Grátis</h3>
+                    <div class="price">R$ 0<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li>Diário emocional básico</li>
+                        <li>3 meditações guiadas</li>
+                        <li>Exercícios de respiração</li>
+                        <li>Relatório semanal simples</li>
+                        <li>Suporte por email</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="display: block; text-align: center;">Começar Agora</a>
+                </div>
+                <div class="pricing-card featured fade-in">
+                    <div class="featured-badge">Mais Popular</div>
+                    <h3>Premium</h3>
+                    <div class="price">R$ 29,90<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li>Todos os recursos gratuitos</li>
+                        <li>Meditações ilimitadas</li>
+                        <li>Análise de humor com IA</li>
+                        <li>Relatórios detalhados</li>
+                        <li>Programas personalizados</li>
+                        <li>Suporte prioritário</li>
+                        <li>Conteúdo exclusivo</li>
+                    </ul>
+                    <a href="#" class="cta-button mindez-button" style="display: block; text-align: center;">Assinar Agora</a>
+                </div>
+                <div class="pricing-card fade-in">
+                    <h3>Família</h3>
+                    <div class="price">R$ 49,90<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li>4 contas Premium</li>
+                        <li>Relatórios familiares</li>
+                        <li>Controle parental</li>
+                        <li>Desconto em e-books</li>
+                        <li>Suporte dedicado</li>
+                        <li>Webinars exclusivos</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="display: block; text-align: center;">Assinar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="fade-in">Entre em Contato</h2>
+                <p class="fade-in">Tem dúvidas ou sugestões? Nossa equipe está pronta para ajudar!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Informações de Contato</h3>
+                    <p>Estamos sempre disponíveis para ajudar você a encontrar as melhores soluções em IA para suas necessidades.</p>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-envelope"></i> zaratinidacrus@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 98887-2334</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
+                        <li><i class="fas fa-clock"></i> Segunda a Sexta: 9h às 18h</li>
+                    </ul>
+                    
+                    <div class="whatsapp-contact">
+                        <h4>Fale Conosco pelo WhatsApp</h4>
+                        <a href="https://wa.me/5511988872334" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            Enviar Mensagem
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button mindez-button" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Zaratini IA</h3>
+                    <p>Transformando ideias em realidade através da inteligência artificial mais avançada do mercado.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#features">Recursos</a></li>
+                        <li><a href="#mindez">Mind-EZ</a></li>
+                        <li><a href="#products">Produtos</a></li>
+                        <li><a href="#pricing">Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Produtos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Mind-EZ App</a></li>
+                        <li><a href="#">E-books</a></li>
+                        <li><a href="#">Pacotes</a></li>
+                        <li><a href="#">Consultoria</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Status do Sistema</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Zaratini IA. Todos os direitos reservados. | WhatsApp: (11) 98887-2334 | Email: zaratinidacrus@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animação de entrada dos elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+            
+            // Menu mobile
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav');
+            
+            mobileMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+            
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Fechar menu mobile se estiver aberto
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
